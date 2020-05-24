@@ -62,6 +62,8 @@ Result :
 
 [deeplearning.ai : Tensorflow in Practice Specialization](https://www.coursera.org/specializations/tensorflow-in-practice)
 
+[deeplearning.ai : Neural Networks and Deep Learning](https://www.coursera.org/learn/neural-networks-deep-learning)
+
 [Hong Kong University of Science and Technology : Python and Statistics for Financial Analysis](https://www.coursera.org/learn/python-statistics-financial-analysis)
 
 
