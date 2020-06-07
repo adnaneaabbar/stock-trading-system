@@ -19,8 +19,8 @@ def predict():
     '''
     text = request.form['Company']
     scaler = MinMaxScaler(feature_range=(0,1))
-    apple_quote = web.DataReader(text, data_source='yahoo', start='2012-01-01', end= datetime.today().strftime('%Y-%m-%d'))
-    new_df = apple_quote.filter(['Close'])
+    dataframe = web.DataReader(text, data_source='yahoo', start='2012-01-01', end= datetime.today().strftime('%Y-%m-%d'))
+    new_df = dataframe.filter(['Close'])
     last_60_days = new_df[-60:].values
     last_60_days_scaled = scaler.fit_transform(last_60_days)
     X_test = []
@@ -39,8 +39,8 @@ def predict_api():
     '''
     data = request.get_json(force=True)
     scaler = MinMaxScaler(feature_range=(0,1))
-    apple_quote = web.DataReader(data.values(), data_source='yahoo', start='2012-01-01', end=datetime.today().strftime('%Y-%m-%d'))
-    new_df = apple_quote.filter(['Close'])
+    dataframe = web.DataReader(data.values(), data_source='yahoo', start='2012-01-01', end=datetime.today().strftime('%Y-%m-%d'))
+    new_df = dataframe.filter(['Close'])
     last_60_days = new_df[-60:].values
     last_60_days_scaled = scaler.fit_transform(last_60_days)
     X_test = []
