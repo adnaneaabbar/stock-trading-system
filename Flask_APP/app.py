@@ -1,8 +1,9 @@
 import pandas_datareader as web
 from sklearn.preprocessing import MinMaxScaler
-from datetime import datetime
+from datetime import datetime,timedelta
 from keras.models import load_model
 import numpy as np
+import pandas as pd
 from flask import Flask, request, jsonify, render_template
 
 app = Flask(__name__)
@@ -30,7 +31,8 @@ def predict():
     pred_price = model.predict(X_test)
     pred_price = scaler.inverse_transform(pred_price)[0][0]
     output = pred_price
-    return render_template('index.html', prediction_text='tomorrow stock price is {} $'.format(output))
+
+    return render_template('index.html', prediction_text='tomorrow`s stock price is {} $'.format(output))
 
 @app.route('/predict_api',methods=['POST'])
 def predict_api():

@@ -3,7 +3,7 @@
 <!--From https://codepen.io/frytyler/pen/EGdtg-->
 <head>
     <meta charset="UTF-8">
-    <title>ML API</title>
+    <title>Trading system</title>
     <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Arimo' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Hind:300' rel='stylesheet' type='text/css'>
@@ -12,18 +12,20 @@
 
 </head>
 
+
+
 <body>
 <div class="login">
+    <p>
+        <script> document.write(new Date().toLocaleDateString()); </script>
+    </p>
     <h1>Predict tomorrow's Stock Price</h1>
-
     <!-- Main Input For Receiving Query to our ML -->
     <form action="{{ url_for('predict')}}"method="post">
         <input type="text" name="Company" placeholder="Yahoo Company name" required="required" />
-
-
+<!--        <input type="Date" name="Date" placeholder="prediction end date" required="required" />-->
         <button type="submit" class="btn btn-primary btn-block btn-large">Predict Stock price</button>
     </form>
-
     <br>
     <br>
     {{ prediction_text }}
