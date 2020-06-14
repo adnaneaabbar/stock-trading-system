@@ -3,6 +3,8 @@ from sklearn.preprocessing import MinMaxScaler
 from datetime import datetime,timedelta
 from keras.models import load_model
 import numpy as np
+import matplotlib as plt
+from matplotlib.figure import Figure
 import pandas as pd
 from flask import Flask, request, jsonify, render_template
 
@@ -30,9 +32,45 @@ def predict():
     X_test = np.reshape(X_test, (X_test.shape[0], X_test.shape[1], 1))
     pred_price = model.predict(X_test)
     pred_price = scaler.inverse_transform(pred_price)[0][0]
-    output = pred_price
+    output_close = pred_price
 
-    return render_template('index.html', prediction_text='tomorrow`s stock price is {} $'.format(output))
+    new_df_open = dataframe.filter(['Open'])
+    last_60_days_open = new_df_open[-60:].values
+    last_60_days_scaled_open = scaler.fit_transform(last_60_days_open)
+    X_test_open = []
+    X_test_open.append(last_60_days_scaled_open)
+    X_test_open = np.array(X_test_open)
+    X_test_open = np.reshape(X_test_open, (X_test_open.shape[0], X_test_open.shape[1], 1))
+    pred_price_open = model.predict(X_test_open)
+    pred_price_open = scaler.inverse_transform(pred_price_open)[0][0]
+    output_open = pred_price_open
+
+    new_df_high = dataframe.filter(['High'])
+    last_60_days_high = new_df_high[-60:].values
+    last_60_days_scaled_high = scaler.fit_transform(last_60_days_high)
+    X_test_high = []
+    X_test_high.append(last_60_days_scaled_high)
+    X_test_high = np.array(X_test_high)
+    X_test_high = np.reshape(X_test_high, (X_test_high.shape[0], X_test_high.shape[1], 1))
+    pred_price_high = model.predict(X_test_high)
+    pred_price_high = scaler.inverse_transform(pred_price_high)[0][0]
+    output_high = pred_price_high
+
+    new_df_low = dataframe.filter(['Low'])
+    last_60_days_low = new_df_low[-60:].values
+    last_60_days_scaled_low = scaler.fit_transform(last_60_days_low)
+    X_test_low = []
+    X_test_low.append(last_60_days_scaled_low)
+    X_test_low = np.array(X_test_low)
+    X_test_low = np.reshape(X_test_low, (X_test_low.shape[0], X_test_low.shape[1], 1))
+    pred_price_low = model.predict(X_test_low)
+    pred_price_low = scaler.inverse_transform(pred_price_low)[0][0]
+    output_low = pred_price_low
+    # apple_quote2 = web.DataReader('GS', data_source='yahoo', start=datetime.today().strftime('%Y-%m-%d'), end=datetime.today().strftime('%Y-%m-%d'))
+    # today_price=apple_quote2['Close']
+    pred_text = 'Predicted '+text+' prices for tomorrow'
+    return render_template('index.html', close=output_close,open=output_open,high=output_high,low=output_low,text=pred_text)
+
 
 @app.route('/predict_api',methods=['POST'])
 def predict_api():

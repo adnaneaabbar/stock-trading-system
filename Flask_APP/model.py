@@ -73,12 +73,12 @@ train = data[:training_data_len]
 valid = data[training_data_len:]
 valid['Predictions'] = predictions
 
-plt.figure(figsize=(16,8))
-plt.title('Model')
-plt.xlabel('Date', fontsize=18)
-plt.ylabel('Close price USD ($)', fontsize=18)
-plt.plot(train['Close'])
-plt.plot(valid[['Close', 'Predictions']])
-plt.legend(['Train', 'Val', 'Predictions'], loc='lower right')
-plt.show()
+# plt.figure(figsize=(16,8))
+# plt.title('Model')
+# plt.xlabel('Date', fontsize=18)
+# plt.ylabel('Close price USD ($)', fontsize=18)
+# plt.plot(train['Close'])
+# plt.plot(valid[['Close', 'Predictions']])
+# plt.legend(['Train', 'Val', 'Predictions'], loc='lower right')
+# plt.show()
 

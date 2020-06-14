@@ -9,12 +9,11 @@
     <link href='https://fonts.googleapis.com/css?family=Hind:300' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
-
 </head>
 
 
-
 <body>
+
 <div class="login">
     <p>
         <script> document.write(new Date().toLocaleDateString()); </script>
@@ -27,10 +26,34 @@
         <button type="submit" class="btn btn-primary btn-block btn-large">Predict Stock price</button>
     </form>
     <br>
+    {{text}}
     <br>
-    {{ prediction_text }}
-
-</div>
+    <p>                               </p>
+    <p>                               </p>
+    <table  style="border:1px solid black ;margin-left:auto;margin-right:auto;">
+        <thead>
+        <tr>
+            <th>Open</th>
+            <th>  </th>
+            <th>Low</th>
+            <th>  </th>
+            <th>High</th>
+            <th>  </th>
+            <th>Close</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td style="text-align:center">{{open}}</td>
+            <td style="text-align:center">  </td>
+            <td>{{low}}</td>
+            <td>  </td>
+            <td style="text-align:center">{{high}}</td>
+            <td>  </td>
+            <td style="text-align:center">{{close}}</td></tr>
+        </tbody>
+        </tr>
+    </table></div>
 
 </body>
 </html>
