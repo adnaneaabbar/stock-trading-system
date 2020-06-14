@@ -56,6 +56,10 @@ Result :
 
 ---
 
+Don't forget to check our [trading strategy](https://github.com/adnaneaabbar/stock-trading-system/blob/master/AutomatedTradingStrategyAppleStocks.ipynb) applied and backtested.
+
+---
+
 # References
 
 [deeplearning.ai : Deep Learning Specialization](https://www.coursera.org/specializations/deep-learning?)
